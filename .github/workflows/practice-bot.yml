@@ -1,0 +1,29 @@
+name: Practice bot
+
+# Answers a practice request the way the real bot answers in ECPI's repository.
+# It only answers the owner of this copy, so nobody else can make it write here.
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: practice-bot-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  answer:
+    if: startsWith(github.event.issue.title, '[Practice request]') && github.event.issue.user.login == github.repository_owner
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: python3 .github/practice_bot.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          ISSUE: ${{ github.event.issue.number }}

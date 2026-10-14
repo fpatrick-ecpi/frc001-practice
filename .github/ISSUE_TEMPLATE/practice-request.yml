@@ -1,0 +1,29 @@
+name: Practice request
+description: Ask for a reading to be added to a PRC101 week. A practice bot answers here, like the real one in ECPI's repository.
+title: "[Practice request] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This is practice. Pick a week, name the reading exactly as the book gives it, say why students read it, and press **Create**. The practice bot answers on this page in about a minute.
+  - type: dropdown
+    id: week
+    attributes:
+      label: Week
+      options: ["1", "2", "3", "4", "5"]
+    validations:
+      required: true
+  - type: input
+    id: reading
+    attributes:
+      label: Reading
+      description: The chapter or article, named exactly as the book gives it. For example, Chapter 2: Planning Your Project
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why students read it
+      description: One or two plain sentences.
+    validations:
+      required: true
