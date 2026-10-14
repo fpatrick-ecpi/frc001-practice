@@ -87,9 +87,11 @@ def put_on_branch(number, week, reading, why):
         call('POST', 'git/refs', {'ref': 'refs/heads/' + branch, 'sha': main})
     path = 'courses/prc101/week%s-reading.md' % week
     have = call('GET', 'contents/%s?ref=%s' % (path, branch), ok404=True)
-    text = base64.b64decode(have['content']).decode() if have else (
-        '# Week %s reading list\n\nBefore you begin, please make sure you have reviewed the following:\n\n' % week)
-    text = text.rstrip('\n') + '\n- %s\n' % reading
+    if have:
+        text = base64.b64decode(have['content']).decode().rstrip('\n') + '\n- %s\n' % reading
+    else:
+        text = ('# Week %s reading list\n\nBefore you begin, please make sure you have reviewed the following:\n\n'
+                '- %s\n' % (week, reading))
     data = {'message': 'Add %s to the Week %s reading list\n\nFrom practice request #%d: %s' % (reading, week, number, why),
             'content': base64.b64encode(text.encode()).decode(), 'branch': branch}
     if have:
