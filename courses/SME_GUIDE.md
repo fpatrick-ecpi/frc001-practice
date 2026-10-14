@@ -15,3 +15,7 @@ This guide is practice material for FRC001. It is short on purpose.
 - Spell out every acronym the first time you use it.
 - Say each thing once.
 - Never put a password, a key, a student's name or a grade in a request.
+
+## Before you ask
+
+Have the course code ready — and one sentence on why students need the change.
