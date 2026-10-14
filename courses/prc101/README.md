@@ -7,5 +7,5 @@ A pretend five-week course for practicing GitHub in FRC001. It has no real stude
 1. Getting started
 2. Planning
 3. Building
-4. Testing
+4. Reviewing
 5. Presenting
