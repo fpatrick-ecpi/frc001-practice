@@ -1,0 +1,29 @@
+name: Checks
+
+# Two small checks run on every pull request, the way ECPI's repository runs
+# its own: a green check means passed, a red X means failed.
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  course-content:
+    name: course-content
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: python3 .github/check.py course-content
+
+  house-style:
+    name: house-style
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: python3 .github/check.py house-style
