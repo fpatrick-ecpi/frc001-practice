@@ -18,4 +18,4 @@ This guide is practice material for FRC001. It is short on purpose.
 
 ## Before you ask
 
-Have the course code ready — and one sentence on why students need the change.
+Have two things ready: the course code, and one sentence on why students need the change.
